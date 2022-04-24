@@ -1,9 +1,7 @@
-package hellojpa;
+package ch1hellojpa;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 //JPA가 로딩될 때 JPA가 사용되는 얘임을 알려줌, JPA가 읽고 관리
 @Entity
@@ -16,6 +14,15 @@ public class Member {
     //매핑될 컬럼
     //@Column(name ="username")
     private String name;
+
+    public Member(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Member() {
+
+    }
 
     public Long getId() {
         return id;
@@ -32,4 +39,6 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }
