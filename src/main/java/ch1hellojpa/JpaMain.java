@@ -44,7 +44,7 @@ public class JpaMain {
 
             //JPQL : 테이블이 아닌 엔티티 객체를 대상으로 검색
             //SQL을 추상화해서 특정 DB SQL에 종속적이지 않은 쿼리 설계 가능
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+            List<Member> result = em.createQuery("select m from MemberCh4 as m", Member.class)
                     //pagination
                     .setFirstResult(5)
                     .setMaxResults(8)
