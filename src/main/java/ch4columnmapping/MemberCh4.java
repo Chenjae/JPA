@@ -7,8 +7,15 @@ import java.util.Date;
 @Entity
 //Unique 제약 조건
 //@Table(uniqueConstraints = )
+@SequenceGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        sequenceName = "MEMBER_SEQ", //매핑할 데이터베이스 시퀀스 이름
+        initialValue = 1, allocationSize = 50) //allocationSize : DB의 SEQUENCE에 50개 번호를 미리 땡겨놓고 사용
 public class MemberCh4 {
     @Id
+    //AUTO, IDENTITY : TABLE에 위임, SEQUENCE : SEQUENCE OBJECT로 부터 만듬, TABLE : 키 생성 전용 테이블을 하나 만들어서 시퀀스 흉내
+    //IDENTITY 전략을 사용하면 persist() 시점에 INSERT 발생
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     //데이터 컬럼명을 별도로 지정 "name"
     @Column(name = "name") private String username;

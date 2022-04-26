@@ -22,7 +22,7 @@
             <!-- hibernate Batch 설정, 버퍼링을 모았다가 write -->
             <property name="hibernate.jdbc.batch_size" value="10"/>
             <!-- 데이터베이스 스키마 자동 생성 -->
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
 </persistence>
