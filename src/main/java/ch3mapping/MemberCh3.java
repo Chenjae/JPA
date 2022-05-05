@@ -3,7 +3,7 @@ package ch3mapping;
 import javax.persistence.*;
 
 //JPA가 로딩될 때 JPA가 사용되는 얘임을 알려줌, JPA가 읽고 관리
-@Entity
+//@Entity
 //매핑될 테이블
 //@Table(name ="USER")
 public class MemberCh3 {

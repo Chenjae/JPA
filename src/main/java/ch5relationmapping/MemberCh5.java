@@ -50,7 +50,19 @@ public class MemberCh5 {
         return team;
     }
 
-    public void setTeam(TeamCh5 team) {
+    public void changeTeam(TeamCh5 team) {
         this.team = team;
+        //1차 캐시 메모리에만 있을 경우를 위해 team의 Member List에도 객체를 세팅해줌
+        team.getMembers().add(this);
+    }
+
+    //*Member의 toString과 Team의 toString에서 서로를 호출 해 무한 루프에 빠짐
+    @Override
+    public String toString() {
+        return "MemberCh5{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", team=" + team +
+                '}';
     }
 }

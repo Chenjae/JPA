@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -20,15 +21,25 @@ public class JpaMain {
 
             MemberCh5 member = new MemberCh5();
             member.setUsername("member1");
-            //member.setTeamId(team.getId());
-            member.setTeam(team);
+            member.changeTeam(team); // 연관관계 편의 메서드 *주의 : 한 객체에서만 메서드를 만들 것
             em.persist(member);
 
+            //flush를 하지 않을 경우를 위해 양쪽에 값을 세팅 -> Member의 Team Setter를 변경
+            //team.getMembers().add(member);
+
+            //em.flush();
+            //em.clear();
+
             MemberCh5 findMember = em.find(MemberCh5.class, member.getId());
-            //Long findTeamId = findMember.getTeamId();
-            //TeamCh5 findTeam = em.find(TeamCh5.class, member.getTeamId());
+            
             TeamCh5 fineTeam = findMember.getTeam();
             System.out.println("fineTeam.getName() = " + fineTeam.getName());
+            
+            //양방향 연관 관계
+            List<MemberCh5> members = findMember.getTeam().getMembers();
+            for(MemberCh5 m : members) {
+                System.out.println("m.getUsername() = " + m.getUsername());
+            }
 
             tx.commit();
         }catch (Exception e) {
